@@ -85,21 +85,25 @@ public class ContentsTable implements Serializable {
     /**
      * 内容所属评论数
      */
+    @Column(name = "comments_num")
     private Integer commentsNum;
 
     /**
      * 是否允许评论
      */
+    @Column(name = "allow_comment")
     private Boolean allowComment;
 
     /**
      * 是否允许ping
      */
+    @Column(name = "allow_ping")
     private Boolean allowPing;
 
     /**
      * 允许出现在聚合中
      */
+    @Column(name = "allow_feed")
     private Boolean allowFeed;
 
     /**
