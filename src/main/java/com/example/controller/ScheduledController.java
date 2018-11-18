@@ -16,7 +16,6 @@ import java.util.List;
 @Component
 public class ScheduledController {
 
-
     @Autowired
     private IContentsService contentsService;
 
@@ -34,7 +33,8 @@ public class ScheduledController {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            tickerService.SaveBqiTicker(contentsTable.getName());
+            System.out.println(contentsTable.getCid());
+            tickerService.SaveBqiTicker(contentsTable.getCid(),contentsTable.getSlug());
         }
         System.out.println(" End Time : " + new Date());
     }

@@ -51,7 +51,7 @@ public class TickerServiceImpl implements ITickerService {
      * <p>author zhouhe</p>
      */
     @Override
-    public void SaveBqiTicker(String name) throws IOException {
+    public void SaveBqiTicker(Integer id,String name) throws IOException {
         System.out.println("SaveBqiTicker Start Time : " + new Date());
         BqiTickerTable returnResult = new BqiTickerTable();
         String url = "https://public.bqi.com/public/v1/ticker?code=" + name;
@@ -68,6 +68,9 @@ public class TickerServiceImpl implements ITickerService {
         }
         httpGet.releaseConnection();
         if (returnResult != null) {
+            if(id != null){
+                returnResult.setCid(id);
+            }
             tickerRepository.save(returnResult);
         }
         System.out.println("SaveBqiTicker End Time : " + new Date());

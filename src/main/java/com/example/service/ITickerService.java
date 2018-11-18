@@ -18,5 +18,5 @@ public interface ITickerService {
      * <p>param  </p>
      * <p>author zhouhe</p>
      */
-    void SaveBqiTicker(String name) throws IOException;
+    void SaveBqiTicker(Integer id,String name) throws IOException;
 }
