@@ -26,7 +26,9 @@ public class BqiTickerTable implements Serializable {
 //         "KLine": "0.1624,0.1594,0.1611,0.1561,0.1510,0.1501,0.1552,0.1251,0.1255,0.2178,0.2197,0.1454,0.1482,0.1484,0.1520,0.1572,0.1569,0.1581,0.1553,0.1658,0.1661,0.1549,0.1515,0.1529,0.1507,0.1508,0.1558,0.1487"
 //IDENTITY：主键由数据库自动生成（主要是自动增长型）
     @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer cid;
+
     private String id;
 
     //名称
@@ -61,13 +63,13 @@ public class BqiTickerTable implements Serializable {
     //涨幅(24h)
     private String percent_change_24h;
 
-    //涨幅(7d)
-    private String percent_change_7d;
+    public Integer getCid() {
+        return cid;
+    }
 
-    private String last_updated;
-
-    @Column(length = 1000)
-    private String KLine;
+    public void setCid(Integer cid) {
+        this.cid = cid;
+    }
 
     public String getId() {
         return id;
@@ -205,26 +207,13 @@ public class BqiTickerTable implements Serializable {
         this.KLine = KLine;
     }
 
-    @Override
-    public String toString() {
-        return "BqiTickerTable{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", symbol='" + symbol + '\'' +
-                ", rank='" + rank + '\'' +
-                ", logo='" + logo + '\'' +
-                ", price_usd='" + price_usd + '\'' +
-                ", price_btc='" + price_btc + '\'' +
-                ", volume_24h_usd='" + volume_24h_usd + '\'' +
-                ", market_cap_usd='" + market_cap_usd + '\'' +
-                ", available_supply='" + available_supply + '\'' +
-                ", total_supply='" + total_supply + '\'' +
-                ", max_supply='" + max_supply + '\'' +
-                ", percent_change_1h='" + percent_change_1h + '\'' +
-                ", percent_change_24h='" + percent_change_24h + '\'' +
-                ", percent_change_7d='" + percent_change_7d + '\'' +
-                ", last_updated='" + last_updated + '\'' +
-                ", KLine='" + KLine + '\'' +
-                '}';
-    }
+    //涨幅(7d)
+    private String percent_change_7d;
+
+    private String last_updated;
+
+    @Column(length = 1000)
+    private String KLine;
+
+
 }
