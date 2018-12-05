@@ -26,7 +26,7 @@ public class CoinDetailsConverterSQL {
         return instance;
     }
 
-    public static void GetCoinDetail(String urlFxhCurrenciesParams, String urlFxhCoindetailsParams, String urlCoingeckoParams, String coinParams, String outputPathParams, String fileNameParams) throws Exception {
+    public static void GetCoinDetail(String urlFxhCurrenciesParams, String urlFxhCoindetailsParams, String urlCoingeckoParams, String coinParams, String outputPathParams, String fileNameParams,String coinId) throws Exception {
 
         StringBuilder contentSql = new StringBuilder();
         String slugSql = "";
@@ -40,7 +40,6 @@ public class CoinDetailsConverterSQL {
         String statusSql = "publish";
         String categoriesSql = "默认分类";
         Integer createdSql = DateKit.getCurrentUnixTime();
-
         String urlFeixiaohao = urlFxhCurrenciesParams + coinParams;
         Document docFeixiaohao = Jsoup.connect(urlFeixiaohao).userAgent(USER_AGENT).get();
         Elements elementsFeixiaohaos = docFeixiaohao.getElementsByAttributeValue("class", "secondPark");
@@ -243,6 +242,7 @@ public class CoinDetailsConverterSQL {
         System.out.println("contentSql ：" + contentSql);
 
         String insertSQL = "INSERT INTO `tale`.`t_contents` (\n" +
+                "\t`cid`,\n" +
                 "\t`content`,\n" +
                 "\t`modified`,\n" +
                 "\t`slug`,\n" +
@@ -269,6 +269,7 @@ public class CoinDetailsConverterSQL {
                 ")\n" +
                 "VALUES\n" +
                 "\t(\n" +
+                "'" + coinId + "'" + "," +
                 "'" + contentSql + "'" + "," +
                 "'" + createdSql + "'" + "," +
                 "'" + slugSql + "'" + "," +
@@ -361,10 +362,10 @@ public class CoinDetailsConverterSQL {
         String fxhCurrencies = "https://www.feixiaohao.com/currencies/";
         String fxhCoindetails = "https://www.feixiaohao.com/coindetails/";
         String coingeckoUrl = "https://www.coingecko.com/en/coins/";
-        String coin = "storj";
-        String outputPath = "/Users/zhouhe/file/";
-        String fileName = coin + "CreateSQL001.txt";
-        GetCoinDetail(fxhCurrencies, fxhCoindetails, coingeckoUrl, coin, outputPath, fileName);
+        String coinId = "storj";
+        String outputPath = "E:\\git-project-syuukawa\\SQLFile\\";
+        String fileName = coinId + ".txt";
+        GetCoinDetail(fxhCurrencies, fxhCoindetails, coingeckoUrl, coinId, outputPath, fileName,coinId);
 
     }
 
