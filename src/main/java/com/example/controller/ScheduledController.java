@@ -28,11 +28,11 @@ public class ScheduledController {
         System.out.println(" Start Time : " + new Date());
         List<ContentsTable> contentsTableList = contentsService.findByStatus("publish");
         for (ContentsTable contentsTable : contentsTableList) {
-            try {
-                Thread.sleep(5000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+//            try {
+//                Thread.sleep(5000);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
             System.out.println(contentsTable.getCid());
             tickerService.SaveBqiTicker(contentsTable.getCid(),contentsTable.getSlug());
         }
